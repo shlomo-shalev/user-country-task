@@ -16,13 +16,27 @@ services:
       - php_fpm
       - db
       - pma
+      - interface
   php_fpm:
-    image: php:8-fpm
+    build:
+      context: .
+      dockerfile: ./docker/dockerfiles/php.dockerfile
+    image: user_country_php_fpm
     working_dir: /var/www/html
     env_file:
       - .env
     volumes:
       - .:/var/www/html
+  interface:
+    image: node:18
+    working_dir: /var/www/html
+    env_file:
+      - .env
+    command: npm run watch
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8080:80
   db:
     image: mysql:8
     environment:
@@ -56,11 +70,23 @@ services:
       - .:/var/www/html
   # docker compose run --rm artisan ...
   artisan:
-    image: php:8-cli
+    build:
+      context: .
+      dockerfile: ./docker/dockerfiles/php.dockerfile
+    image: user_country_php_fpm
     working_dir: /var/www/html
     env_file:
       - .env
     entrypoint: php artisan
+    volumes:
+      - .:/var/www/html
+  # docker compose run --rm npm ...
+  npm:
+    image: node:16
+    working_dir: /var/www/html
+    env_file:
+      - .env
+    entrypoint: npm
     volumes:
       - .:/var/www/html
 volumes:
