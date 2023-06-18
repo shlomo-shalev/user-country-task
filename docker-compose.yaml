@@ -16,7 +16,7 @@ services:
       - php_fpm
       - db
       - pma
-      - interface
+      # - interface
   php_fpm:
     build:
       context: .
