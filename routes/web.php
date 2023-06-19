@@ -1,6 +1,8 @@
 <?php
 
 // tools
+
+use App\Models\Country;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Foundation\Application;
@@ -26,7 +28,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'countries' => Country::select('name', 'iso', 'id')->get(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/country.php';
