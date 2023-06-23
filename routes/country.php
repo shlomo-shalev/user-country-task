@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CountriesController;
 
-Route::middleware('auth')
+Route::middleware('redirect.connect.invalid')
     ->prefix('country')
     ->controller(CountryController::class)
     ->group(
@@ -18,7 +18,7 @@ Route::middleware('auth')
         }
     );
 
-Route::middleware('auth')
+Route::middleware('redirect.connect.invalid')
     ->prefix('countries')
     ->controller(CountriesController::class)
     ->group(
