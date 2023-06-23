@@ -27,7 +27,7 @@ class Countries extends Migration
 
             $table->index('user_id');
             $table->unique('name');
-            $table->index('iso');
+            $table->unique('iso');
 
             $table->foreign('user_id')
                 ->references('id')

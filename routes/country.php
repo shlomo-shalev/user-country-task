@@ -13,8 +13,8 @@ Route::middleware('auth')
     ->group(
         function () {
             Route::post('create', 'store')->name('country.create');
-            Route::post('update', 'update')->name('country.update');
-            Route::delete('delete', 'destroy')->name('country.destroy');
+            Route::post('{id}', 'update')->name('country.update');
+            Route::delete('{id}', 'destroy')->name('country.destroy');
         }
     );
 
