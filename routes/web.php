@@ -1,7 +1,6 @@
 <?php
 
 // tools
-
 use App\Models\Country;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
