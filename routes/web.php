@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return Inertia::render('Dashboard', [
-        'countries' => Country::select('name', 'iso', 'id')->get(),
+        'countries' => Country::select('name', 'iso', 'id')->orderBy('id', 'desc')->get(),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
