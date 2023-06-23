@@ -61,7 +61,10 @@ services:
   ############## Utility containers ##############
   # docker compose run --rm composer ...
   composer:
-    image: composer:2.5.8
+    build:
+      context: .
+      dockerfile: ./docker/dockerfiles/artisan_composer.dockerfile
+    image: user_country_artisan_composer
     working_dir: /var/www/html
     env_file:
       - .env
@@ -72,8 +75,8 @@ services:
   artisan:
     build:
       context: .
-      dockerfile: ./docker/dockerfiles/artisan.dockerfile
-    image: user_country_artisan
+      dockerfile: ./docker/dockerfiles/artisan_composer.dockerfile
+    image: user_country_artisan_composer
     working_dir: /var/www/html
     env_file:
       - .env

@@ -6,9 +6,6 @@ WORKDIR /var/www/html
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN apt update
-RUN apt install -y git
-
-COPY . .
-
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt-get update
+RUN apt-get install -y libzip-dev zip 
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip
